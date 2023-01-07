@@ -43,5 +43,12 @@ public class User {
         this.dateNaissance = dateNaissance;
         this.typeCarte = typeCarte;
         this.userImage = userImage;
+    }
+
+    @Override
+    public String toString() {
+        return "User [nome=" + nome + ", prenome=" + prenome + ", nomeArabe=" + nomeArabe + ", prenomeArab="
+                + prenomeArab + ", cin=" + cin + ", profession=" + profession + ", dateNaissance=" + dateNaissance
+                + ", typeCarte=" + typeCarte + "]";
     }    
 }

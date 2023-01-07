@@ -3,7 +3,7 @@ import { AdduserServiceService } from '../_Service/adduser-service.service';
 import { User } from '../_Model/User.model';
 import { FileHandler } from "../_Model/FileHandle.model";
 import { NgForm } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,25 +16,38 @@ export class AddUserComponent implements OnInit {
 
   user: User = {
     userId: 0,
-    nome : "",
-    prenome : "",
-    nomeArabe : "",
-    prenomeArab : "",
-    cin : "",
-    profession : "",
-    dateNaissance : "",
+    nome: "",
+    prenome: "",
+    nomeArabe: "",
+    prenomeArab: "",
+    cin: "",
+    profession: "",
+    dateNaissance: "",
     typeCarte: "",
     userImage: {} as FileHandler
-    
+
   }
 
   constructor(private userService: AdduserServiceService,
-    private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute) { }
+    private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute,
+    private http : HttpClient) { }
 
   ngOnInit(): void {
 
   }
 
+  onSubmit(userformm: NgForm) {
+    const userff = this.preparuser(this.user);
+    this.userService.generatepdf(userff) .subscribe(
+      (response) => {
+        // this.user.userImage = {} as any;
+        console.log(response);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
 
   addUser(userform: NgForm) {
     const userf = this.preparuser(this.user);
@@ -58,11 +71,11 @@ export class AddUserComponent implements OnInit {
       new Blob([JSON.stringify(user)], { type: 'application/json' })
     );
 
-      formData.append(
-        'imagefile',
-        user.userImage.file,
-        user.userImage.file.name
-      );
+    formData.append(
+      'imagefile',
+      user.userImage.file,
+      user.userImage.file.name
+    );
     return formData;
   }
 
@@ -77,7 +90,7 @@ export class AddUserComponent implements OnInit {
     }
   }
 
-  removeimage(){
-    this.user.userImage;
-  }
+  // removeimage() {
+  //   this.user.userImage;
+  // }
 }

@@ -2,7 +2,7 @@
     <div class="card">
         <div class="row">
             <div class="col-6">
-                <form #userform="ngForm"  (ngSubmit)="addUser(userform)">
+                <form #userform="ngForm"  (ngSubmit)="onSubmit(userform)">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>User Nome</mat-label>
                         <input matInput placeholder="User Nome" [(ngModel)]="user.nome" name="nome">

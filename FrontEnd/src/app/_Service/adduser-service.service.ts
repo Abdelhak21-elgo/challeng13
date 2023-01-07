@@ -23,7 +23,7 @@ export class AdduserServiceService {
     return this.httpclient.get(this.apipath+'/QrCode', { responseType: 'blob' });
   }
 
-  // public generatepdf(user : FormData){
-  //   return this.httpclient.post(this.apipath+'/generate-pdf', user);
-  // }
+  public generatepdf(user : FormData){
+    return this.httpclient.post<User>(this.apipath+'/generate-pdf', user);
+  }
 }
