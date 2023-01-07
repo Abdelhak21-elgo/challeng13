@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="row">
+            <div class="col-6">
+                <form #userform="ngForm"  (ngSubmit)="addUser(userform)">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Nome</mat-label>
+                        <input matInput placeholder="User Nome" [(ngModel)]="user.nome" name="nome">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Prenome</mat-label>
+                        <input matInput placeholder="User Prenome" [(ngModel)]="user.prenome" name="prenome">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Nome Arabe</mat-label>
+                        <input matInput placeholder="User Nome Arabe" [(ngModel)]="user.nomeArabe" name="nomeArabe">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Prenome Arabe</mat-label>
+                        <input matInput placeholder="User Prenome Arabe" [(ngModel)]="user.prenomeArab" name="prenomeArab">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Cin</mat-label>
+                        <input matInput placeholder="User Cin" [(ngModel)]="user.cin" name="cin">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Profession</mat-label>
+                        <input matInput placeholder="User Profession" [(ngModel)]="user.profession" name="profession">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Date Naissance</mat-label>
+                        <input matInput placeholder="User Date Naissance" [(ngModel)]="user.dateNaissance" name="dateNaissance">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>User Type Cart</mat-label>
+                        <input matInput placeholder="User Type Cart" [(ngModel)]="user.typeCarte" name="typeCarte">
+                    </mat-form-field>
+                    <div align="end">
+                        <button  mat-stroked-button color="primary" type="submit"> Add User</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                <div class="dropzone">
+                    <div class="text-wrapper">
+                        <div class="centredd">
+                            <a (click)="selectFile.click()" style=" color: blue;cursor: pointer;">Browse</a> a file
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input type="file" multiple value="select" style="display: none;" #selectFile
+                        (change)="onFileSelected($event)">
+                </div>
+                <div class="mt-5">
+                    <div class="row">
+                        <mat-grid-list cols="2" rowHeight="1:1">
+                            <mat-grid-tile >
+                                <div style="position: relative;">
+                                    <!-- <span class="btn-remove-img" (click)="removeimage()">x</span> -->
+                                    <img [src]="user.userImage.url" width="auto" height="auto">
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
