@@ -47,14 +47,15 @@ export class AddUserComponent implements OnInit {
         console.log(error);
       }
     );
+    alert("pdf Generated Succefully");
   }
 
   addUser(userform: NgForm) {
     const userf = this.preparuser(this.user);
     this.userService.adduser(userf).subscribe(
       (response: User) => {
-        userform.reset();
-        this.user.userImage = {} as any;
+        // userform.reset();
+        // this.user.userImage = {} as any;
         console.log(response);
       },
       (error: HttpErrorResponse) => {

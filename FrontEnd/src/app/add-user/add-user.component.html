@@ -2,7 +2,7 @@
     <div class="card">
         <div class="row">
             <div class="col-6">
-                <form #userform="ngForm"  (ngSubmit)="onSubmit(userform)">
+                <form #userform="ngForm"  (ngSubmit)="addUser(userform)">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>User Nome</mat-label>
                         <input matInput placeholder="User Nome" [(ngModel)]="user.nome" name="nome">
@@ -36,7 +36,8 @@
                         <input matInput placeholder="User Type Cart" [(ngModel)]="user.typeCarte" name="typeCarte">
                     </mat-form-field>
                     <div align="end">
-                        <button  mat-stroked-button color="primary" type="submit"> Add User</button>
+                        <!-- <button  mat-stroked-button color="primary" type="submit"> Add User</button> -->
+                        <button  mat-stroked-button color="primary" type="submit" (click)="onSubmit(userform)"> Generate PDF</button>
                     </div>
                 </form>
             </div>
@@ -58,7 +59,7 @@
                             <mat-grid-tile >
                                 <div style="position: relative;">
                                     <!-- <span class="btn-remove-img" (click)="removeimage()">x</span> -->
-                                    <img [src]="user.userImage.url" width="auto" height="auto">
+                                    <img [src]="user.userImage.url" width="237px" height="238px">
                                 </div>
                             </mat-grid-tile>
                         </mat-grid-list>

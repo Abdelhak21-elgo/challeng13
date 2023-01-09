@@ -47,7 +47,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [nome=" + nome + ", prenome=" + prenome + ", nomeArabe=" + nomeArabe + ", prenomeArab="
+        return "Carte Professionnel [ nome=" + nome + ", prenome=" + prenome + ", nomeArabe=" + nomeArabe + ", prenomeArab="
                 + prenomeArab + ", cin=" + cin + ", profession=" + profession + ", dateNaissance=" + dateNaissance
                 + ", typeCarte=" + typeCarte + "]";
     }    

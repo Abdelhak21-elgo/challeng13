@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,17 +25,15 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.itextpdf.text.DocumentException;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController {
 
-
     @Autowired
     private UserService userService;
 
-    @Autowired 
+    @Autowired
     private PdfGenerator pdfGenerator;
 
     // return All user
@@ -89,13 +86,13 @@ public class UserController {
     }
 
     @PostMapping("/generate-pdf")
-    public void generetaPDF(@RequestPart("user") User user
-    ) throws FileNotFoundException, DocumentException{
-        
-        try {
-            // ImageModel images = uploadImage(file);
+    public void generetaPDF(@RequestPart("user") User user,
+            @RequestPart("imagefile") MultipartFile file) throws FileNotFoundException {
 
-            pdfGenerator.generatePdf(user);
+        try {
+            ImageModel images = uploadImage(file);
+
+            pdfGenerator.generatePdf(user,images);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
